@@ -1,5 +1,5 @@
-var friends 		= require('../data/friends.js');
-var path 			= require('path');
+var friends = require('../data/friends.js');
+var path = require('path');
 
 
 
@@ -9,14 +9,8 @@ module.exports = function(app){
 	app.get('/api/friends', function(req, res){
 		res.json(friends);
 	});
-
-
+	
 	app.post('/api/friends', function(req, res){
-        // console.log(friends);
-        // console.log('----------------------------------------');
-        // console.log(req.body)
-        // console.log('----------------------------------------');
-        // console.log([friends].length);
 		var greatMatch = {
 			name: "",
 			image: "",
@@ -35,8 +29,6 @@ module.exports = function(app){
 
 			for(var j = 0; j < 10; j++){
 				totalDifference += Math.abs(parseInt(usrScores[j]) - parseInt(friends[i].scores[j]));
-                
-                // if (j === 9) console.log(totalDifference);
 				if (totalDifference <= greatMatch.matchDifference){
 
 					greatMatch.name = friends[i].name;
@@ -45,9 +37,6 @@ module.exports = function(app){
 				}
 			}
 		}
-        console.log('----------------------------------------');
-        console.log(usrData);
-        console.log('----------------------------------------');
 		friends.push(usrData);
  
 		res.json(greatMatch);
